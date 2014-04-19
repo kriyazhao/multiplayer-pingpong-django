@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Ping-Pong Game</title>
+
+<link rel="stylesheet" href="/static/css/css.css"/>
+
+<script src="/static/js/jquery-1.9.1.min.js"></script>
+<script src="/static/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/static/js/popup.js"></script>
+<script src="/static/js/ball.js"></script>
+<script src="/static/js/network.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/score.js"></script>
+
+<style>
+</style>
+</head>
+<body>
+<div class="header">
+	<div class="title font1">Ping-Pong Game</div>
+</div>
+<div class="play_wrapper">
+	<div class="score_board border">
+		<div class="my_score score">
+			<span class="name">__</span>
+			<span class="number">0</span>
+		</div>	
+		<div class="oppo_score score">
+			<span class="name">__</span>
+			<span  class="number">0</span>
+		</div>	
+		<div class="operation_area">
+			<div class="btn1 btn font1" onclick="joinGame();">Join Game</div>
+			<div class="btn2 btn font1" onclick="startGame();">Start Game</div>
+			<div class="btn3 btn font1" onclick="endGame();" style="background:url() red;">End Game</div>
+		</div>
+		<div class="status_area">
+			<span>Status:</span>
+			<span class="status_cnt font1">Ready to Join</span>
+		</div>
+		<div class="member_area">
+			<div class="member_title font1">Online Members</div>
+			<ul class="member_list">
+				Updating members...
+			</ul>
+		</div>
+		<div class="my_pad"></div>
+		<div class="rival_pad"></div>
+	</div>
+	<div class="play_ground border">
+		<div class="oppo_half">
+			<div class="oppo_pad"></div>
+		</div>
+		<div class="my_half">
+		</div>
+		<div class="ball">
+		</div>
+		<div class="table_info font1">Not started yet!</div>
+	</div>
+	<div class="play_info border">
+		<h1 class="font1">Welcome to Fluid Ping-ping Game</h1>
+		<div>Please read the rules:</div>
+		<ul>
+			<li>If you are the first joined player, your table will be at the bottom. If second, your table will be at the top.</li>
+			<li>Your pad cannot move into the other half area, otherwise the other player gets one point.</li>
+			<li>Hit ball with left half of pad, ball turns left; hit right half, ball turns right.</li>
+			<li>If the ball passes border lines of your side, the opposite gets one point.</li>
+			<li>If your miss your the ball from the opposite, the opposite gets one point.</li>
+		</ul>
+	</div>
+	<div class="hint">This is Hint</div>
+</div>
+<div class="sql_show">
+	<div class="queryuser">
+		<button onclick="queryUsers()">query users</button>
+		<span>username:<input type="text" class="userquery"></input></span>
+	</div>
+	<div class="adduser">
+		<button onclick="addUsers()">add users</button>
+		<span>username:<input type="text" class="username"></input></span>
+		<span>DOB:<input type="date" class="birthday"></span>
+		<span>Email:<input type="email" class="email"></span>
+		<span>Club:<input type="text" class="clubname"></span>
+		<span>Score:<input type="text" class="score"></span>
+	</div>
+	<div class="sqlresult">show result here.</div>
+</div>
+<div class="pad_pos"></div>
+
+<script type="text/javascript">
+
+	var ME = null;
+	var RIVAL = null;
+	var joined = false;
+	var canStart = false;
+	var started = false;
+	var playersComplete = false;//true if 2 players both join
+	changeHintPosition("Click to Join our Game!!", $(".btn1").position().left+220, $(".btn1").position().top-30)
+	updateOnlineMember();
+
+</script>
+</body>
+</html>
