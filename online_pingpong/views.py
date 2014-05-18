@@ -74,6 +74,16 @@ def deleteUsers(request):
 	return HttpResponse(json.dumps('success'),  content_type="application/json")
 
 
+def login(request):
+	username = request.POST.get('username')
+	password = request.POST.get('password')
+	cursor = connection.cursor()
+	cursor.execute('SELECT name FROM users WHERE name="'+username+'" AND password='+str(password))
+	if username:
+	    request.session['userName'] = username	
+	    return HttpResponse(json.dumps('success'),  content_type="application/json")
+	else:
+	    return HttpResponse(json.dumps('fail'),  content_type="application/json")
 
 # a sample member list : [{'userName':'fakeUser1', 'url':'1.jpg','score':2013, 'left':0, 'top':0}]
 memberList = []
@@ -120,9 +130,12 @@ def updateOnlineMember(request):
 
 # create dict object for each player and assign a unique session
 def joinGame(request):
-	#generate a random user name
-	username = "Play_"+random_str(2)
+	#judge if logged in
+	username = request.session['username']
+	if (not username):
+		return HttpResponse(json.dumps("not login"),  content_type="application/json")
 	newData = {'userName':username, 'url':str(random.randint(0,6))+'.jpg','score':0, 'left':0, 'top':0}
+	
 	curPair.append(newData)
 
 	# the first player is signed to the table at the bottom
