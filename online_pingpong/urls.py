@@ -10,6 +10,7 @@ from proj1.views import *
 urlpatterns = patterns('',
 	 ('^exchange/$', exchange),
      ('^play/$', play),
+     ('^login/$', login),
      ('^updateOnlineMember/$', updateOnlineMember),
      ('^joinGame/$', joinGame),
      ('^requestPairPlayers/$', requestPairPlayers),
