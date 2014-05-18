@@ -85,6 +85,11 @@ startGameCount = {'count':0}
 def play(request):
 	return render_to_response("index.html")
 
+# login
+def loginPage(request):
+	return render_to_response("login.html");
+	
+
 # respond to startGame request
 def startGame(request):
 	startGameCount['count'] += 1
