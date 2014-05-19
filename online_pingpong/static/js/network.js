@@ -66,7 +66,7 @@ function deleteUsers(button){
 
 /*display current member lists with random chosen image.*/
 var memberTimer = window.setInterval(function() {
-	//updateOnlineMember()
+	updateOnlineMember()
 },3000);
 
 function updateOnlineMember(){
@@ -172,7 +172,7 @@ function startGame(){
 }
 
 var pairTimer = window.setInterval(function() {
-	//requestPairPlayers()
+	requestPairPlayers()
 },1000);
 
 function requestPairPlayers(){
