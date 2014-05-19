@@ -159,7 +159,6 @@ function startGame(){
 		borderWidth: "10px"
 	 }, 1500 );
 	 /*change mouse to a ping pong bar, and start exchange*/
-	 click_stat=true;
 	 bindMouseToPad();
 	 startExchange();
 	 
@@ -241,6 +240,7 @@ function startExchange(){
 					if(data[1]==2){
 						started = true;
 						$(".status_cnt").html("Attention, Game starts in 3 seonds");
+						click_stat=true;
 						setTimeout(function(){
 							getTopOffset.tOffset = -5;
 						},3000)
