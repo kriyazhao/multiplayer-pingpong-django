@@ -25,11 +25,11 @@ def queryUsers(request):
 
 # add users
 def addUsers(request):
-	username = request.GET.get('username')
-	birthday = request.GET.get('birthday')
-	email = request.GET.get('email')
-	clubname = request.GET.get('clubname')
-	score = request.GET.get('score')
+	username = request.POST.get('username')
+	birthday = request.POST.get('birthday')
+	email = request.POST.get('email')
+	clubname = request.POST.get('clubname')
+	score = request.POST.get('score')
 	
 	cursor = connection.cursor()
 	
@@ -56,9 +56,9 @@ def addUsers(request):
 	
 # delete users
 def deleteUsers(request):
-	username = request.GET.get('username')
-	score = request.GET.get('score')
-	clubname = request.GET.get('clubname')
+	username = request.POST.get('username')
+	score = request.POST.get('score')
+	clubname = request.POST.get('clubname')
 	
 	cursor = connection.cursor()
 	
