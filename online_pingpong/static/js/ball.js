@@ -41,7 +41,7 @@ var ballTimer = window.setInterval(function() {
 	
 		var p = $(".ball");
 		var position = p.position();
-		var status=getStatus();
+		//var status=getStatus();
 		
 		if(status==1)
 		{
