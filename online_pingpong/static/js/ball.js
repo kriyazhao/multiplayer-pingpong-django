@@ -41,24 +41,13 @@ var ballTimer = window.setInterval(function() {
 	
 		var p = $(".ball");
 		var position = p.position();
-		//var status=getStatus();
+		var status=getStatus();
 		
 		if(status==1)
 		{
 			var tadd=getTopOffset();
 			var ladd=getLeftOffset();
 			$(".ball").css({"top":position.top+tadd,"left":position.left+ladd});
-		}
-		else if(status==2)//ball status changed by rival
-		{
-			ballStatusChanged = false;
-			if(ballStatus==null)
-				return;
-			else{
-				getLeftOffset.lOffset = ballStatus.x;
-				getTopOffset.tOffset = ballStatus.y;
-			}
-			
 		}
 	}
 },40);
@@ -149,27 +138,6 @@ function getTopOffset()
 
 function getStatus()
 {
-	/*if(ballStatusChanged)
-		return 2;*/
-	
-	/*var stat;
-	var pball = $(".ball");
-	var pad = $(".my_pad");
-	var bar_position = pad.position();
-	var ball_position = pball.position();
-	if(ball_position.top>=bar_position.top-20){
-		//if(ball_position.left+22>=bar_position.left && ball_position.left<=bar_position.left+200)
-			stat=1;//ball move on
-		//else
-		//	stat=0;//game over
-	}
-	else stat=0;
-	
-	/*if(stat!=0&&($("#block_blue1").length==0)&&($("#block_blue2").length==0)
-		&&($("#block_red1").length==0)&&($("#block_red2").length==0)
-		&&($("#block_pink1").length==0)&&($("#block_pink2").length==0))
-	stat=2;*/
-	
 	return 1;
 }
 
