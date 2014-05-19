@@ -171,6 +171,21 @@ function startGame(){
 	 informServerStartGame();
 }
 
+function informServerStartGame(){
+	$.ajax({
+		url:"/startGame",
+		success:function(data){
+			if(data=="wait"){
+				$(".status_cnt").html("Waiting for rival to press start...");
+			}else if(data=="start"){
+			}
+			
+			//$(".btn1").html("Join Game");
+			//$(".btn2").html("Start Game");
+		}
+	});
+}
+
 var pairTimer = window.setInterval(function() {
 	requestPairPlayers()
 },1000);
@@ -204,21 +219,6 @@ function requestPairPlayers(){
 			//else if(json.length>2){
 			//	popup("System error...(players >2)")
 			//}
-		}
-	});
-}
-
-function informServerStartGame(){
-	$.ajax({
-		url:"/startGame",
-		success:function(data){
-			if(data=="wait"){
-				$(".status_cnt").html("Waiting for rival to press start...");
-			}else if(data=="start"){
-			}
-			
-			//$(".btn1").html("Join Game");
-			//$(".btn2").html("Start Game");
 		}
 	});
 }
