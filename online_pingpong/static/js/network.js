@@ -25,7 +25,9 @@ function addUsers(){
 	var score = $(".adduser .score").val();
 	
 	$.ajax({
-		url:"/addUsers?username="+username.toString()+"&birthday="+birthday.toString()+"&email="+email.toString()+"&clubname="+clubname.toString()+"&score="+score,
+		type: "POST",
+		url:"/addUsers",
+		data:{"username": username.toString(), "score": score.toString(), "clubname":clubname.toString(), "birthday":birthday.toString(), "email":email.toString()},
 		success:function(data){
 			if(data.length==0){
 				$(".sqlresult").html("Couldn't add user, please fill in all the required fields!");
@@ -52,7 +54,7 @@ function deleteUsers(button){
 	$.ajax({
 		type: "POST",
 		url:"/deleteUsers",
-		data:{"username": username, "score": score, "clubname":clubname}
+		data:{"username": username, "score": score, "clubname":clubname},
 		success:function(data){
 			var str = "";
 			if(data =="success"){
