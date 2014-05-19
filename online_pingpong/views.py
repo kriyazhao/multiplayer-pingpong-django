@@ -81,9 +81,9 @@ def login(request):
 	cursor.execute('SELECT name FROM users WHERE name="'+username+'" AND password='+str(password))
 	if username:
 	    request.session['userName'] = username	
-	    return HttpResponse(json.dumps('success'),  content_type="application/json")
+	    return render_to_response("index.html")
 	else:
-	    return HttpResponse(json.dumps('fail'),  content_type="application/json")
+	    return render_to_response("login.html")
 
 # a sample member list : [{'userName':'fakeUser1', 'url':'1.jpg','score':2013, 'left':0, 'top':0}]
 memberList = []
