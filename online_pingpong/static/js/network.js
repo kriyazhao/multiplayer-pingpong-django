@@ -50,7 +50,9 @@ function deleteUsers(button){
 	var clubname = $(".third_club_"+class_id).attr("id");
 	//console.log(username,score,clubname)
 	$.ajax({
-		url:"/deleteUsers?username="+username+"&score="+score+"&clubname="+clubname,
+		type: "POST",
+		url:"/deleteUsers",
+		data:{"username": username, "score": score, "clubname":clubname}
 		success:function(data){
 			var str = "";
 			if(data =="success"){
