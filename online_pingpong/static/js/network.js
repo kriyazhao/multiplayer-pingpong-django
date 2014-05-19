@@ -106,6 +106,11 @@ function joinGame(){
 		success : function(data){
 			var json = eval(data);
 			
+			/*if not logged in*/
+			if (json == "not login"){
+				popup("Please login in first")
+				window.location.href='/loginpage';
+			}
 			/*change the player's name*/
 			if(json[1].length <=2){
 				ME = json[0];
