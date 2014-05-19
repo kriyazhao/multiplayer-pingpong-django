@@ -73,7 +73,7 @@ def deleteUsers(request):
 	cursor.close()
 	return HttpResponse(json.dumps('success'),  content_type="application/json")
 
-
+# login
 def login(request):
 	username = request.POST.get('username')
 	password = request.POST.get('password')
@@ -85,6 +85,10 @@ def login(request):
 	else:
 	    return render_to_response("login.html")
 
+# loginpage
+def loginPage(request):
+	return render_to_response("login.html");
+	
 # a sample member list : [{'userName':'fakeUser1', 'url':'1.jpg','score':2013, 'left':0, 'top':0}]
 memberList = []
 curPair = []
@@ -95,34 +99,6 @@ startGameCount = {'count':0}
 def play(request):
 	return render_to_response("index.html")
 
-# login
-def loginPage(request):
-	return render_to_response("login.html");
-	
-
-# respond to startGame request
-def startGame(request):
-	startGameCount['count'] += 1
-	if startGameCount['count']==1:
-		return HttpResponse(json.dumps("wait"),  content_type="application/json")
-	elif startGameCount['count']==2:
-		return HttpResponse(json.dumps("start"),  content_type="application/json")
-
-# players send the position of their own pad, and get update about rival's pad position 
-def exchange(request):
-    padLeft = request.GET.get('left')
-    padTop = request.GET.get('top')
-    otherInfo = None
-    pos = request.session['pos']
-    if pos=='down':
-	    curPair[0]['left'] = padLeft
-	    curPair[0]['top'] = padTop
-	    otherInfo = curPair[1]
-    elif pos=='up':
-	    curPair[1]['left'] = padLeft
-	    curPair[1]['top'] = padTop
-	    otherInfo = curPair[0]
-    return HttpResponse(json.dumps([otherInfo,startGameCount['count']]),  content_type="application/json")
 
 # update current member lists
 def updateOnlineMember(request):	
@@ -151,6 +127,30 @@ def joinGame(request):
 		request.session['pos'] = 'up'
 		
 	return HttpResponse(json.dumps([newData, curPair]),  content_type="application/json")
+
+# respond to startGame request
+def startGame(request):
+	startGameCount['count'] += 1
+	if startGameCount['count']==1:
+		return HttpResponse(json.dumps("wait"),  content_type="application/json")
+	elif startGameCount['count']==2:
+		return HttpResponse(json.dumps("start"),  content_type="application/json")
+
+# players send the position of their own pad, and get update about rival's pad position 
+def exchange(request):
+    padLeft = request.GET.get('left')
+    padTop = request.GET.get('top')
+    otherInfo = None
+    pos = request.session['pos']
+    if pos=='down':
+	    curPair[0]['left'] = padLeft
+	    curPair[0]['top'] = padTop
+	    otherInfo = curPair[1]
+    elif pos=='up':
+	    curPair[1]['left'] = padLeft
+	    curPair[1]['top'] = padTop
+	    otherInfo = curPair[0]
+    return HttpResponse(json.dumps([otherInfo,startGameCount['count']]),  content_type="application/json")
 
 # respond to request that if the game can start
 def requestPairPlayers(request):
