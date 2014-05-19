@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 	 ('^exchange/$', exchange),
      ('^play/$', play),
      ('^login/$', login),
+     ('^loginpage/$', loginPage)
      ('^updateOnlineMember/$', updateOnlineMember),
      ('^joinGame/$', joinGame),
      ('^requestPairPlayers/$', requestPairPlayers),
